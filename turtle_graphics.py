@@ -1,23 +1,32 @@
-from turtle import Turtle, Screen
+import turtle as t
+import turtle
 import random
 
-screen = Screen()
-dribble = Turtle()
+turtle.colormode(255)
+
+screen = t.Screen()
+dribble = t.Turtle()
 dribble.shape("turtle")
 dribble.color("green")
+
+def random_color():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    print(f"{r},{g},{b}")
+    c_value = (r,g,b)
+    return c_value
 
 def random_walk():
     """Turtle will paint a random walk path."""
     directions = [0,90,180,270]
-    colors = ["red", "blue","green","yellow","orange","purple","pink","brown"]
     dribble.pensize(20)
     dribble.speed(10)
 
     counter = 0
     while True:
         x = random.choice(directions)
-        y = random.choice(colors)
-        dribble.color(y)
+        dribble.color(random_color())
         dribble.right(x)
         print(x)
         dribble.forward(50)
