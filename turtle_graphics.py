@@ -43,4 +43,13 @@ def random_walk():
                 else:
                     continue
 
-random_walk()
+def spirograph():
+    for i in range(0,73):
+        dribble.speed(0)
+        dribble.circle(100)
+        dribble.right(5)
+        dribble.color(random_color())
+    
+    screen.exitonclick()
+    
+spirograph()
