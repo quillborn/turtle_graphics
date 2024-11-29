@@ -33,13 +33,12 @@ def random_walk():
         counter += 1
         if counter == 50:
             while True:
-                q = input("continue? Y/N")
+                q = input("continue random walk? Y/N")
                 if q == "y":
                     counter = 0
                     break
                 elif q == "n":
-                    screen.exitonclick()
-                    exit()
+                    return
                 else:
                     continue
 
@@ -50,7 +49,6 @@ def spirograph(size_of_gap):
         dribble.circle(100)
         dribble.setheading(dribble.heading() + size_of_gap)
     
-    screen.exitonclick()
     
 def color_extract(image,colors):
     """Uses the colorgram package to extract the specified number of colors from the provided image"""
@@ -99,6 +97,32 @@ def hirst_painting(size, color_list, paces):
         dotted_line(size,color_list,paces)
         y += paces
         tp(x,y)
-    screen.exitonclick()
 
-hirst_painting(10,hirst_color_list,50)
+
+# while True: 
+#     prompt = input("Turtle can perform the following: Random Walk[R], Spirograph[S], or Hirst Painting[H]: ").lower
+#     if prompt == 'r' or 's' or 'h':
+#         break
+#     else:
+#         continue 
+
+while True:
+    while True:
+        prompt = input("Turtle can perform the following: Random Walk[R], Spirograph[S], or Hirst Painting[H]: ").lower()
+        if prompt in ['r', 's', 'h']:
+            break
+        else: continue
+
+    if prompt == 'r':
+        random_walk()
+        break
+    elif prompt == 's':
+        spirograph(5)
+        break
+    elif prompt == 'h':
+        hirst_painting(10,hirst_color_list,50)
+        break
+
+print("Turtle Graphics will exit on click")
+screen.exitonclick()
+exit()
