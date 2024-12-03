@@ -2,6 +2,7 @@ import turtle as t
 import turtle
 import random
 import colorgram
+from turtle_race import turtle_race
 
 turtle.colormode(255)
 screen = t.Screen()
@@ -13,7 +14,7 @@ def random_color():
     r = random.randint(0, 255)
     g = random.randint(0, 255)
     b = random.randint(0, 255)
-    print(f"{r},{g},{b}")
+    # print(f"{r},{g},{b}")
     c_value = (r,g,b)
     return c_value
 
@@ -133,8 +134,8 @@ def etch_a_sketch():
 
 while True:
     while True:
-        prompt = input("Turtle can perform the following: Random Walk[R], Spirograph[S], Hirst Painting[H], Etch-a-sketch[E]:  ").lower()
-        if prompt in ['r', 's', 'h','e']:
+        prompt = input("Turtle can perform the following:\nRandom Walk[R], Spirograph[S], Hirst Painting[H], Etch-a-sketch[E], Turtle Race[T]:  ").lower()
+        if prompt in ['r', 's', 'h','e','t']:
             break
         else: continue
 
@@ -149,6 +150,10 @@ while True:
         break
     elif prompt == 'e':
         etch_a_sketch()
+        break
+    elif prompt == 't':
+        dribble.hideturtle()
+        turtle_race()
         break
 
 print("Turtle Graphics will exit on click")
