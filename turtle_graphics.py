@@ -60,7 +60,6 @@ def color_extract(image,colors):
         b = color.rgb.b
         new_color = (r,g,b)
         rgb_colors.append(new_color)
-    print(rgb_colors)
 
 
 hirst_color_list = [(243, 236, 68), (183, 75, 21), (228, 154, 7), (234, 72, 134), (200, 163, 114), (216, 228, 238),
@@ -98,18 +97,44 @@ def hirst_painting(size, color_list, paces):
         y += paces
         tp(x,y)
 
+def forward():
+    """Turtle moves forwards"""
+    dribble.forward(10)
 
-# while True: 
-#     prompt = input("Turtle can perform the following: Random Walk[R], Spirograph[S], or Hirst Painting[H]: ").lower
-#     if prompt == 'r' or 's' or 'h':
-#         break
-#     else:
-#         continue 
+def backwards():
+    """Turtle moves backwards"""
+    dribble.back(10)
+
+def turn_right():
+    """Turtle turns to right"""
+    dribble.right(10)
+
+def turn_left():
+    """Turtle turns to left"""
+    dribble.left(10)
+
+def reset():
+    """resets screen"""
+    dribble.clear()
+    dribble.penup()
+    dribble.home()
+    dribble.pendown()
+    dribble.color(random_color())
+
+
+def etch_a_sketch():
+    dribble.color(random_color())
+    screen.listen()
+    screen.onkeypress(key = 'w', fun = forward)
+    screen.onkeypress(key = 's', fun = backwards)
+    screen.onkey(key = 'd', fun = turn_right)
+    screen.onkey(key = 'a', fun = turn_left)
+    screen.onkey(key = 'space', fun = reset)
 
 while True:
     while True:
-        prompt = input("Turtle can perform the following: Random Walk[R], Spirograph[S], or Hirst Painting[H]: ").lower()
-        if prompt in ['r', 's', 'h']:
+        prompt = input("Turtle can perform the following: Random Walk[R], Spirograph[S], Hirst Painting[H], Etch-a-sketch[E]:  ").lower()
+        if prompt in ['r', 's', 'h','e']:
             break
         else: continue
 
@@ -121,6 +146,9 @@ while True:
         break
     elif prompt == 'h':
         hirst_painting(10,hirst_color_list,50)
+        break
+    elif prompt == 'e':
+        etch_a_sketch()
         break
 
 print("Turtle Graphics will exit on click")
