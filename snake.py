@@ -9,6 +9,7 @@ class Snake:
     def __init__(self):
         self.segment_list = []
         self.create_snake(3)
+        self.head = self.segment_list[0]
 
     def create_snake(self, length):
         x = 0

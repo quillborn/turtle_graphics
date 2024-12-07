@@ -1,5 +1,6 @@
 from turtle import Screen, Turtle
 from snake import Snake
+from food import Food
 import time
 
 # Set up the screen
@@ -11,7 +12,8 @@ screen.tracer(0)
 
 # Initialize the snake and movement state
 snake = Snake()
-snake_moving = True
+food = Food()
+snake_moving = False
 
 # Function to toggle the movement state
 def toggle_pause():
@@ -32,5 +34,9 @@ while True:
     if snake_moving:  # Only move the snake if the game isn't paused
         time.sleep(0.1)
         snake.move(20)
+
+        #detect collision with food
+        if snake.head.distance(food) < 15:
+            food.refresh()
 
 screen.exitonclick()
