@@ -11,17 +11,36 @@ class Snake:
         self.create_snake(3)
         self.head = self.segment_list[0]
 
+    def hide(self):
+        for n in self.segment_list:
+            n.hideturtle()
+
+    def show(self):
+        for n in self.segment_list:
+            n.showturtle()
+
     def create_snake(self, length):
-        x = 0
-        y = 0
         for n in range(length):
-            segment = Turtle()
-            segment.penup()
-            segment.shape("square")
-            segment.color("white")
-            segment.goto(x,y)
-            self.segment_list.append(segment)
-            x -= 20
+            self.add_segment(0, 0)
+
+    def add_segment(self, x, y):
+        segment = Turtle()
+        segment.penup()
+        segment.shape("square")
+        segment.color("white")
+        segment.goto(x,y)
+        self.segment_list.append(segment)
+        x -= 20
+
+    def extend(self):
+        self.add_segment(self.segment_list[-1].xcor(), self.segment_list[-1].ycor())
+
+    def snake_collision(self):
+        for segment in self.segment_list[1:]:
+            if self.head.distance(segment) < 15:
+                return True
+    
+
 
     def move(self, distance):
         for seg_num in range(len(self.segment_list)-1, 0, -1):
@@ -46,3 +65,11 @@ class Snake:
     def right(self):
         if self.segment_list[0].heading() != left:
             self.segment_list[0].setheading(right)
+
+    def reset(self):
+        for s in self.segment_list:
+            s.hideturtle()
+            del s
+        self.segment_list.clear()
+        self.create_snake(3)
+        self.head = self.segment_list[0]
